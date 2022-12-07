@@ -1,0 +1,37 @@
+/*
+Enter your query here.
+*/
+
+-- select id, age, coins_needed, power
+-- from ((
+
+-- select w.id, w.code, w.coins_needed, w.power, wp.age from Wands w
+-- left join Wands_Property wp
+-- on w.code=wp.code
+-- where wp.is_evil = 0
+-- group by power, age, coins_needed, code, id;
+
+
+
+-- select w.id, w.code, w.coins_needed, w.power, wp.age from Wands w
+-- left join Wands_Property wp
+-- on w.code=wp.code
+-- where wp.is_evil = 0) t1;
+
+
+select w.id, wp.age, w.coins_needed, w.power
+from Wands w
+left join Wands_Property wp
+on w.code=wp.code
+where wp.is_evil = 0 and w.coins_needed = (select MIN(w1.coins_needed) from Wands w1 left join Wands_Property wp1 on w1.code=wp1.code where wp1.is_evil=0 and wp.age=wp1.age and w.power=w1.power group by w.power, wp.age)
+order by power desc, age desc;
+
+-- SELECT W.id, A.age, W.coins_needed, W.power FROM Wands AS W INNER JOIN Wands_Property AS A ON W.code = A.code WHERE A.is_evil = 0 ORDER BY W.power desc, A.age desc;
+
+
+-- order by power desc, age desc;
+
+
+
+
+
