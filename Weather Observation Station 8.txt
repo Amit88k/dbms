@@ -1,0 +1,37 @@
+/*
+Enter your query here.
+*/
+
+-- Method 1
+SELECT DISTINCT city
+from station
+WHERE SUBSTR(city,1,1) in ("a","e","i","o","u")
+AND SUBSTR(city,length(city),1) in ("a","e","i","o","u");
+
+
+-- Method 2
+-- SELECT DISTINCT CITY FROM STATION
+-- WHERE (
+-- (RIGHT(CITY, 1) IN ('a', 'e', 'i', 'o', 'u'))
+-- AND
+-- (LEFT(CITY, 1) IN ('A', 'E', 'I', 'O', 'U'))
+-- );
+
+-------------------------------------------------------------------------------------------
+
+-- Method 3
+-- SELECT DISTINCT city
+-- FROM station
+-- WHERE city like "a%a" OR city like "a%e" OR city like "a%i" OR city like "a%o" OR city like "a%u"
+-- OR city like "e%a" OR city like "e%e" OR city like "e%i" OR city like "e%o" OR city like "e%u"
+-- OR city like "i%a" OR city like "i%e" OR city like "i%i" OR city like "i%o" OR city like "i%u"
+-- OR city like "o%a" OR city like "o%e" OR city like "o%i" OR city like "o%o" OR city like "o%u"
+-- OR city like "u%a" OR city like "u%e" OR city like "u%i" OR city like "u%o" OR city like "u%u";
+
+
+-- Method 4
+-- SELECT DISTINCT city
+-- FROM station
+-- WHERE (city like "a%" OR city like "e%" OR city like "i%" OR city like "o%" OR city like "u%")
+-- AND (city like "%a" OR city like "%e" OR city like "%i" OR city like "%o" OR city like "%u");
+
