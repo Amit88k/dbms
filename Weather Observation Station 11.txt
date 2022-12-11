@@ -1,0 +1,23 @@
+-- METHOD 1
+-- SELECT DISTINCT city
+-- FROM STATION
+-- WHERE city REGEXP "^[^aeiou]" OR city REGEXP "[^aeiou]$";
+
+-- -- METHOD 2
+-- SELECT DISTINCT city
+-- FROM STATION
+-- WHERE LEFT(city, 1) NOT IN ('a','e','i','o','u') OR
+-- RIGHT(city,1) NOT IN ('a','i','o','e','u');
+
+-- METHOD 3
+-- SELECT DISTINCT city
+-- FROM STATION
+-- WHERE SUBSTR(city,1,1) NOT IN ('a','e','i','o','u') OR
+-- SUBSTR(city, LENGTH(city),1) NOT IN ('a','e','i','o','u');
+
+-- -- METHOD 4
+SELECT DISTINCT city FROM STATION
+WHERE (city NOT LIKE '%a' AND city NOT LIKE '%e' AND
+city NOT LIKE '%i' AND city NOT LIKE '%o' AND city NOT LIKE '%u') OR
+(city NOT LIKE 'a%' AND city NOT LIKE 'e%' AND city NOT LIKE 'i%'
+AND city NOT LIKE 'o%' AND city NOT LIKE 'u%');
